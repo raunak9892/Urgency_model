@@ -1,8 +1,10 @@
 import flet as ft
 
+from classifier import urgency
 from custom_stats_widget import CustomStatsWidget
 from custom_card import CustomCard
-from helo import get_emails
+from temp import run_model
+from two import get_emails, label
 
 
 
@@ -10,7 +12,13 @@ from helo import get_emails
 def main(page: ft.Page):
 
   def fetching_emails(e):
+    print("Fetching Emails")
     emails = get_emails()
+    urgency()
+    run_model()
+    label()
+
+
     
 
   def handle_avatar_tap(e):

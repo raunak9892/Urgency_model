@@ -3,6 +3,8 @@ from transformers import TFDistilBertForSequenceClassification
 import tensorflow as tf
 from transformers import DistilBertTokenizer
 import pandas as pd
+
+
 tokenizer_fine_tuned = DistilBertTokenizer.from_pretrained("./saved_model")
 model_fine_tuned = TFDistilBertForSequenceClassification.from_pretrained("./saved_model")
 def run_model():
@@ -18,7 +20,7 @@ def run_model():
      output = model_fine_tuned(predict_input)[0]
 
      prediction_value = tf.argmax(output, axis = 1).numpy()[0]
-     print(prediction_value)
+     
 
 
 

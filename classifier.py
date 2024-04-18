@@ -7,6 +7,9 @@ import pandas as pd
 
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
+
+
+
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 df = pd.read_csv('emails.csv')
@@ -51,6 +54,7 @@ def tense(text):
 def tonal_urgency_analysis(text):
   """Returns the tonal urgency of the given text as a string."""
   text = str(text)
+  
 
   # Create a TextBlob object
   blob = textblob.TextBlob(text)
@@ -67,7 +71,7 @@ def tonal_urgency_analysis(text):
   if score[0]==0 or score[1]==0:
     tonal_urgency_score=0
   else:  
-   tonal_urgency_score = score[0]/score[1]
+    tonal_urgency_score = score[0]/score[1]
 
   # Determine the tonal urgency level
   if tonal_urgency_score > 0.8:
@@ -83,8 +87,10 @@ def tonal_urgency_analysis(text):
 
 
 # Example usage:
-df['urgency'] = df['description'].apply(tonal_urgency_analysis)
+def urgency():
+ df = pd.read_csv('emails.csv')
+ df['urgency'] = df['description'].apply(tonal_urgency_analysis)
 # Reset the index of the DataFrame
-df.reset_index(drop=True, inplace=True)
+ df.reset_index(drop=True, inplace=True)
 # Save the updated DataFrame to a new CSV file
-df.to_csv('updated_email.csv',index=False) 
+ df.to_csv('updated_email.csv',index=False) 
